@@ -1,8 +1,8 @@
-package MainPane.DrawPane.FileWorkers;
+package mainPane.drawPane.fileWorkers;
 
-import MainPane.DrawPane.Graph;
-import MainPane.DrawPane.MyShapes.Circle;
-import MainPane.DrawPane.MyShapes.Line;
+import mainPane.drawPane.Graph;
+import mainPane.drawPane.myShapes.Circle;
+import mainPane.drawPane.myShapes.Line;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class Loader {
 
     BufferedReader reader;
-    Graph<Circle, Line> graph;
-    Pane innerPane;
-    EventHandler<MouseEvent> select;
-    EventHandler<MouseEvent> selectEdge;
+    final Graph<Circle, Line> graph;
+    final Pane innerPane;
+    final EventHandler<MouseEvent> select;
+    final EventHandler<MouseEvent> selectEdge;
 
     public Loader(Graph<Circle, Line> graph, Stage stage, Pane innerPane, EventHandler<MouseEvent> select, EventHandler<MouseEvent> selectEdge) {
         this.graph = graph;
@@ -56,7 +56,8 @@ public class Loader {
         String workWith = reader.readLine(), tmp = "";
         String[] words = workWith.split(" ");
         for (int i = 2; i < words.length; i++) tmp.concat(words[i]);
-        Line toAdd = new Line(circles.get(Integer.parseInt(words[0])).getCenterX(), circles.get(Integer.parseInt(words[0])).getCenterY(), circles.get(Integer.parseInt(words[1])).getCenterX(), circles.get(Integer.parseInt(words[1])).getCenterY());
+        Line toAdd = new Line(circles.get(Integer.parseInt(words[0])).getCenterX(), circles.get(Integer.parseInt(words[0])).getCenterY(),
+                circles.get(Integer.parseInt(words[1])).getCenterX(), circles.get(Integer.parseInt(words[1])).getCenterY());
         toAdd.setIdentifier(tmp);
         graph.addEdge(circles.get(Integer.parseInt(words[0])), circles.get(Integer.parseInt(words[1])), toAdd);
     }

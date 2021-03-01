@@ -1,29 +1,10 @@
-package MainPane.DrawPane;
+package mainPane.drawPane;
 
 import javafx.util.Pair;
 
 import java.util.*;
 
 public class Graph<Node, Edge> {
-
-    private List<Node> nodes = new LinkedList<Node>();
-    private List<InnerEdge> edges = new LinkedList<InnerEdge>();
-
-    private class InnerEdge {
-        Node from, to;
-        Edge info = null;
-
-        public InnerEdge(Node from, Node to) {
-            this.from = from;
-            this.to = to;
-        }
-
-        public InnerEdge(Node from, Node to, Edge info) {
-            this.from = from;
-            this.to = to;
-            this.info = info;
-        }
-    }
 
     public List<Edge> getEdges() {
         Set<Edge> temp = new LinkedHashSet<>();
@@ -58,7 +39,7 @@ public class Graph<Node, Edge> {
 
 
     public List<Node> getAdjacentNodes(Node toSearch) {
-        List<Node> toReturn = new ArrayList<Node>();
+        List<Node> toReturn = new ArrayList<>();
         for (InnerEdge i : edges)
             if (i.from == toSearch) toReturn.add(i.to);
         return toReturn;
@@ -73,7 +54,7 @@ public class Graph<Node, Edge> {
     }
 
     public List<Edge> getIncidentEdges(Node toSearch) {
-        List<Edge> toReturn = new ArrayList<Edge>();
+        List<Edge> toReturn = new ArrayList<>();
         for (InnerEdge i : edges)
             if (i.from == toSearch) toReturn.add(i.info);
         return toReturn;
@@ -89,7 +70,7 @@ public class Graph<Node, Edge> {
     }
 
     public List<Node> getNodesFromEdges(List<Edge> edgesSearch) {
-        ArrayList<Node> toReturn = new ArrayList<Node>();
+        ArrayList<Node> toReturn = new ArrayList<>();
         for (Edge i : edgesSearch)
             for (InnerEdge j : edges) {
                 if (i == j.info) toReturn.add(j.to);
@@ -112,5 +93,25 @@ public class Graph<Node, Edge> {
         toReturn.nodes = this.getNodes();
         toReturn.edges = new LinkedList<>(this.edges);
         return toReturn;
+    }
+
+    private List<Node> nodes = new LinkedList<>();
+    private List<InnerEdge> edges = new LinkedList<>();
+
+    private class InnerEdge {
+        final Node from;
+        final Node to;
+        Edge info = null;
+
+        public InnerEdge(Node from, Node to) {
+            this.from = from;
+            this.to = to;
+        }
+
+        public InnerEdge(Node from, Node to, Edge info) {
+            this.from = from;
+            this.to = to;
+            this.info = info;
+        }
     }
 }

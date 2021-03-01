@@ -1,6 +1,5 @@
-package MainPane.DrawPane;
+package mainPane.drawPane;
 
-import MainPane.MainPane;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -9,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class InputField {
-    private String text;
+    private final String text;
 
     public InputField() {
         TextField input = new TextField();

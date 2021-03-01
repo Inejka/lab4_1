@@ -1,4 +1,4 @@
-package MainPane.DrawPane.Algorithm;
+package mainPane.drawPane.algorithm;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;

@@ -1,7 +1,7 @@
-package MainPane;
+package mainPane;
 
-import MainPane.DrawPane.DrawPane;
-import MainPane.DrawPane.InputField;
+import mainPane.drawPane.DrawPane;
+import mainPane.drawPane.InputField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -14,16 +14,29 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainPane extends VBox {
+    public MainPane(Stage stage) {
+        parentStage = stage;
+        menuBarInit();
+        toolBarInit();
+        tabPaneInit();
 
-    private MenuBar menuBar = new MenuBar();
-    private ToolBar toolBar = new ToolBar();
-    private TabPane tabPane = new TabPane();
+        DrawPane drawPane = new DrawPane();
+        Tab tab = new Tab("Hi");
+        tab.setContent(drawPane);
+        tabPane.getTabs().add(tab);
+        getChildren().addAll(menuBar, toolBar, tabPane);
+    }
+
+    private final MenuBar menuBar = new MenuBar();
+    private final ToolBar toolBar = new ToolBar();
+
+    private final TabPane tabPane = new TabPane();
 
     private Stage parentStage;
 
-    Integer paneCount = 0;
+    private Integer paneCount = 0;
 
-    EventHandler<ActionEvent> newPaneE = e -> {
+    private final EventHandler<ActionEvent> newPaneE = e -> {
         DrawPane toAddPane = new DrawPane();
         Tab toAddTab = new Tab("untiled" + paneCount.toString());
         paneCount++;
@@ -31,29 +44,17 @@ public class MainPane extends VBox {
         tabPane.getTabs().add(toAddTab);
     };
 
-    EventHandler<ActionEvent> saveE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).save(parentStage);
-    };
+    private final EventHandler<ActionEvent> saveE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).save(parentStage);
 
-    EventHandler<ActionEvent> loadE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).load(parentStage);
-    };
+    private final EventHandler<ActionEvent> loadE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).load(parentStage);
 
-    EventHandler<ActionEvent> renameE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).setIdentifier(new InputField().getText());
-    };
+    private final EventHandler<ActionEvent> renameE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).setIdentifier(new InputField().getText());
 
-    EventHandler<ActionEvent> deleteE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).removeSelected();
-    };
+    private final EventHandler<ActionEvent> deleteE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).removeSelected();
 
-    EventHandler<ActionEvent> algorithmE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).algorithm();
-    };
+    private final EventHandler<ActionEvent> algorithmE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).algorithm();
 
-    EventHandler<ActionEvent> clearE = e -> {
-        ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).clear();
-    };
+    private final EventHandler<ActionEvent> clearE = e -> ((DrawPane) tabPane.getSelectionModel().getSelectedItem().getContent()).clear();
 
     private void menuBarInit() {
         menuBar.prefWidthProperty().bind(widthProperty());
@@ -104,18 +105,5 @@ public class MainPane extends VBox {
     private void tabPaneInit() {
         tabPane.prefWidthProperty().bind((widthProperty()));
         tabPane.prefHeightProperty().bind(heightProperty());
-    }
-
-    public MainPane(Stage stage) {
-        parentStage = stage;
-        menuBarInit();
-        toolBarInit();
-        tabPaneInit();
-
-        DrawPane drawPane = new DrawPane();
-        Tab tab = new Tab("Hi");
-        tab.setContent(drawPane);
-        tabPane.getTabs().add(tab);
-        getChildren().addAll(menuBar, toolBar, tabPane);
     }
 }
