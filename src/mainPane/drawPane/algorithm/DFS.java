@@ -1,6 +1,6 @@
-package MainPane.DrawPane.Algorithm;
+package mainPane.drawPane.algorithm;
 
-import MainPane.DrawPane.Graph;
+import mainPane.drawPane.Graph;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -10,17 +10,18 @@ import java.util.Map;
 
 public class DFS implements Runnable {
 
-    Thread thread;
+    private final Thread thread;
 
-    Drawer drawer = new Drawer();
+    private final Drawer drawer = new Drawer();
 
-    Map<Object, Integer> tin = new HashMap<>(), fup = new HashMap<>();
-    Map<Object, Boolean> used = new HashMap<>();
-    int timer = 0;
+    private final Map<Object, Integer> tin = new HashMap<>();
+    private final Map<Object, Integer> fup = new HashMap<>();
+    private final Map<Object, Boolean> used = new HashMap<>();
+    private int timer = 0;
 
-    List<Shape> bridges = new ArrayList<>();
+    private final List<Shape> bridges = new ArrayList<>();
 
-    Graph<Shape, Shape> graph;
+    private final Graph<Shape, Shape> graph;
 
     public DFS(Graph<? extends Shape, ? extends Shape> graph) {
         thread = new Thread(this, "Demo");

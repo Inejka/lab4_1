@@ -1,8 +1,8 @@
-package MainPane.DrawPane.FileWorkers;
+package mainPane.drawPane.fileWorkers;
 
-import MainPane.DrawPane.Graph;
-import MainPane.DrawPane.MyShapes.Circle;
-import MainPane.DrawPane.MyShapes.Line;
+import mainPane.drawPane.Graph;
+import mainPane.drawPane.myShapes.Circle;
+import mainPane.drawPane.myShapes.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class Saver {
 
     PrintWriter writer;
-    Graph<Circle, Line> graph;
+    final Graph<Circle, Line> graph;
 
     public Saver(Graph<Circle, Line> graph, Stage stage) {
         this.graph = graph;

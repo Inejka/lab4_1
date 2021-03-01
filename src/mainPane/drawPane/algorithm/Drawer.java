@@ -1,4 +1,4 @@
-package MainPane.DrawPane.Algorithm;
+package mainPane.drawPane.algorithm;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
@@ -9,7 +9,7 @@ public class Drawer {
     public void makeColorNode(Shape toChange) {
         toChange.setStroke(Color.RED);
         try {
-            Thread.sleep(500);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -18,7 +18,7 @@ public class Drawer {
     public void makeColorEdges(List<? extends Shape> toChange) {
         for (Shape i : toChange) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(60);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

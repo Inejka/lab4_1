@@ -1,4 +1,4 @@
-import MainPane.MainPane;
+import mainPane.MainPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
